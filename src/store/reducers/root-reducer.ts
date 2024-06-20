@@ -4,6 +4,12 @@ import { fetchUsers } from '../api/fetchUsers';
 
 const initialState: any = {
   isShowed: true,
+  wordsMap: [
+    ['брат', 'араб', 'тара', 'бар', 'раб', 'бра'],
+    ['минор', 'корм', 'кино', 'мир', 'ком', 'ион', 'ром', 'мор', 'рок', 'инок'],
+    ['канон', 'икона', 'цинк', 'кино', 'ион', 'инок'],
+  ],
+  currentLevel: 1,
 };
 // eslint-disable-next-line @typescript-eslint/default-param-last
 export const showSlice = createSlice({

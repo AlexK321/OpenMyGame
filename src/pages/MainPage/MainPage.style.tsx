@@ -1,13 +1,21 @@
 import styled from 'styled-components';
 
-export const MainContainer = styled.div`
-  margin: 0 auto;
+export const MainWrapper = styled.div`
   height: 100vh;
+  width: 100%;
+  background: ${props => props.theme.colors.bg};
+  display: flex;
+`;
+
+export const MainContent = styled.div`
+  margin: auto;
+  height: calc(100vh - 90px);
   padding: 32px;
-  max-width: 630px;
+  width: 630px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background: ${props => props.theme.colors.bg};
-  font-color: ${props => props.theme.colors.lightFont};
+  border: 2px solid ${props => props.theme.colors.lightFont};
+  border-radius: 8px;
+  color: ${props => props.theme.colors.lightFont};
 `;

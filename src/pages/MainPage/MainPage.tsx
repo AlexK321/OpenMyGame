@@ -1,7 +1,8 @@
 import { showLogo } from '../../store/reducers/root-reducer';
 import { useAppDispatch, useAppSelector } from '../../store/store';
+import { GameBlock } from '../../templates/GameBlock';
 
-import { MainContainer } from './MainPage.style';
+import { MainContent, MainWrapper } from './MainPage.style';
 
 export const MainPage = () => {
   // const dispatch = useAppDispatch();
@@ -11,9 +12,10 @@ export const MainPage = () => {
   // };
 
   return (
-    <MainContainer>
-      <div>Header</div>
-      <div>Content</div>
-    </MainContainer>
+    <MainWrapper>
+      <MainContent>
+        <GameBlock />
+      </MainContent>
+    </MainWrapper>
   );
 };

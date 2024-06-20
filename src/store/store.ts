@@ -5,7 +5,7 @@ import rootReducer from './reducers/root-reducer';
 
 export const store = configureStore({
   reducer: {
-    showLogo: rootReducer,
+    rootReducer: rootReducer,
   },
 });
 
