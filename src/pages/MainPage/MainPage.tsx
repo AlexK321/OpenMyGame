@@ -1,20 +1,30 @@
-import { showLogo } from '../../store/reducers/root-reducer';
-import { useAppDispatch, useAppSelector } from '../../store/store';
+import { useState } from 'react';
+
+import { setNextLevel } from '../../store/reducers/root-reducer';
+import { useAppDispatch } from '../../store/store';
 import { GameBlock } from '../../templates/GameBlock';
+import { InformationBlock } from '../../templates/InformationBlock';
 
 import { MainContent, MainWrapper } from './MainPage.style';
 
 export const MainPage = () => {
-  // const dispatch = useAppDispatch();
-  // const state = useAppSelector<any>(state => state);
-  // const showLogoFunc = () => {
-  //   dispatch(showLogo({ isShowed: true }));
-  // };
+  const [isGameOpen, setIsGameOpen] = useState(true);
+  const dispatch = useAppDispatch();
+
+  const handleWon = () => {
+    setIsGameOpen(false);
+  };
+
+  const handleNextButtonClick = () => {
+    setIsGameOpen(true);
+    dispatch(setNextLevel({}));
+  };
 
   return (
     <MainWrapper>
       <MainContent>
-        <GameBlock />
+        {isGameOpen && <GameBlock onWonGame={handleWon} />}
+        {!isGameOpen && <InformationBlock onWonGame={handleNextButtonClick} />}
       </MainContent>
     </MainWrapper>
   );

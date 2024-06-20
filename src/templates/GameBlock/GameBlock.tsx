@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { LetterItem } from '../../core/LetterItem';
 import { Typography } from '../../core/Typography';
@@ -8,7 +8,7 @@ import { WordsList } from '../WordsList';
 import { GameBlockContainer, UsersWordContainer } from './GameBlock.style';
 import { useGameBlockData } from './hooks/useGameBlockData';
 
-export const GameBlock = () => {
+export const GameBlock: FC<any> = ({ onWonGame }) => {
   const [usersWord, setUsersWord] = useState<string>('');
 
   const { currentLevel, currentList, uniqueLettersCoordinates } = useGameBlockData();
@@ -20,7 +20,7 @@ export const GameBlock = () => {
   const handleLetterClick = (letter: string) => {
     setUsersWord;
 
-    if (usersWord.length < 4) {
+    if (usersWord.length < 5) {
       setUsersWord(usersWord + letter);
     } else {
       setUsersWord('');
@@ -42,6 +42,7 @@ export const GameBlock = () => {
 
       if (!updatedCurrentCheckList.find((item: Record<string, any>) => item.isFound === false)) {
         console.log('You won!');
+        onWonGame();
       }
     }
   }, [usersWord]);

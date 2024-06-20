@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MainWrapper = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   background: ${props => props.theme.colors.bg};
   display: flex;
@@ -9,7 +9,7 @@ export const MainWrapper = styled.div`
 
 export const MainContent = styled.div`
   margin: auto;
-  height: calc(100vh - 90px);
+  min-height: calc(100vh - 90px);
   padding: 32px;
   width: 630px;
   display: flex;

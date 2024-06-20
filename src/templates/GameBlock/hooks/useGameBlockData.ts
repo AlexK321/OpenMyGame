@@ -2,7 +2,7 @@ import { useAppSelector } from '../../../store/store';
 
 export const useGameBlockData = () => {
   const UNIQUE_LETTERS_RADIUS = 93;
-  const currentLevel = useAppSelector<any>(state => state.rootReducer.currentLevel);
+  const currentLevel = useAppSelector<any>(state => state.rootReducer.currentLevel) % 3;
   const wordsMap = useAppSelector<any>(state => state.rootReducer.wordsMap);
 
   const currentList = wordsMap[currentLevel - 1];

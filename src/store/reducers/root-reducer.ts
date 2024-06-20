@@ -12,12 +12,12 @@ const initialState: any = {
   currentLevel: 1,
 };
 // eslint-disable-next-line @typescript-eslint/default-param-last
-export const showSlice = createSlice({
-  name: 'showLogo',
+export const rootSlice = createSlice({
+  name: 'gameData',
   initialState,
   reducers: {
-    showLogo: (state, action) => {
-      state.isShowed = action.payload.isShowed;
+    setNextLevel: (state, action) => {
+      state.currentLevel = state.currentLevel + 1;
     },
   },
   extraReducers: builder => {
@@ -38,6 +38,6 @@ export const showSlice = createSlice({
   },
 });
 
-export const { showLogo } = showSlice.actions;
+export const { setNextLevel } = rootSlice.actions;
 
-export default showSlice.reducer;
+export default rootSlice.reducer;
