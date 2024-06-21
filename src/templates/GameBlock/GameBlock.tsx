@@ -42,7 +42,7 @@ export const GameBlock: FC<any> = ({ onWonGame }) => {
         localStorage.setItem('currentCheckList', JSON.stringify([]));
       }
     }
-  }, [currentCheckList, currentLevel, dispatch, onWonGame, setCurrentCheckList, usersWord]);
+  }, [usersWord]);
 
   return (
     <GameBlockContainer>
