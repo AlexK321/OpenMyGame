@@ -2,6 +2,8 @@ import { FC, useEffect, useState } from 'react';
 
 import { LetterItem } from '../../core/LetterItem';
 import { Typography } from '../../core/Typography';
+import { setCurrentLevel } from '../../store/reducers/root-reducer';
+import { useAppDispatch } from '../../store/store';
 import { UniqueLetters } from '../UniqueLetters';
 import { WordsList } from '../WordsList';
 
@@ -9,22 +11,13 @@ import { GameBlockContainer, UsersWordContainer } from './GameBlock.style';
 import { useGameBlockData } from './hooks/useGameBlockData';
 
 export const GameBlock: FC<any> = ({ onWonGame }) => {
+  const dispatch = useAppDispatch();
   const [usersWord, setUsersWord] = useState<string>('');
 
-  const { currentLevel, currentList, uniqueLettersCoordinates } = useGameBlockData();
-
-  const [currentCheckList, setCurrentCheckList] = useState<Record<string, any>[]>(
-    currentList.map((word: string) => ({ word: word, isFound: false })),
-  );
+  const { currentLevel, uniqueLettersCoordinates, currentCheckList, setCurrentCheckList } = useGameBlockData();
 
   const handleLetterClick = (letter: string) => {
-    setUsersWord;
-
-    if (usersWord.length < 5) {
-      setUsersWord(usersWord + letter);
-    } else {
-      setUsersWord('');
-    }
+    setUsersWord(usersWord.length < 5 ? usersWord + letter : '');
   };
 
   useEffect(() => {
@@ -41,11 +34,15 @@ export const GameBlock: FC<any> = ({ onWonGame }) => {
       setCurrentCheckList(updatedCurrentCheckList);
 
       if (!updatedCurrentCheckList.find((item: Record<string, any>) => item.isFound === false)) {
-        console.log('You won!');
+        dispatch(setCurrentLevel({ level: currentLevel + 1 }));
+        localStorage.setItem('currentLevel', String(currentLevel + 1));
         onWonGame();
+        localStorage.setItem('needUpdate', 'true');
+        setCurrentCheckList([]);
+        localStorage.setItem('currentCheckList', JSON.stringify([]));
       }
     }
-  }, [usersWord]);
+  }, [currentCheckList, currentLevel, dispatch, onWonGame, setCurrentCheckList, usersWord]);
 
   return (
     <GameBlockContainer>

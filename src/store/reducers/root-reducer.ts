@@ -3,12 +3,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchUsers } from '../api/fetchUsers';
 
 const initialState: any = {
-  isShowed: true,
   wordsMap: [
-    ['брат', 'араб', 'тара', 'бар', 'раб', 'бра'],
-    ['минор', 'корм', 'кино', 'мир', 'ком', 'ион', 'ром', 'мор', 'рок', 'инок'],
-    ['канон', 'икона', 'цинк', 'кино', 'ион', 'инок'],
+    ['брат', 'бра'],
+    ['минор', 'корм', 'инок'],
+    ['канон', 'икона'],
   ],
+  // wordsMap: [
+  //   ['брат', 'араб', 'тара', 'бар', 'раб', 'бра'],
+  //   ['минор', 'корм', 'кино', 'мир', 'ком', 'ион', 'ром', 'мор', 'рок', 'инок'],
+  //   ['канон', 'икона', 'цинк', 'кино', 'ион', 'инок'],
+  // ],
   currentLevel: 1,
 };
 // eslint-disable-next-line @typescript-eslint/default-param-last
@@ -16,8 +20,8 @@ export const rootSlice = createSlice({
   name: 'gameData',
   initialState,
   reducers: {
-    setNextLevel: (state, action) => {
-      state.currentLevel = state.currentLevel + 1;
+    setCurrentLevel: (state, action) => {
+      state.currentLevel = action.payload.level;
     },
   },
   extraReducers: builder => {
@@ -38,6 +42,6 @@ export const rootSlice = createSlice({
   },
 });
 
-export const { setNextLevel } = rootSlice.actions;
+export const { setCurrentLevel } = rootSlice.actions;
 
 export default rootSlice.reducer;
