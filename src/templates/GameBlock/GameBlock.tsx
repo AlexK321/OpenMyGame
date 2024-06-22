@@ -18,17 +18,21 @@ export const GameBlock: FC<any> = ({ onWonGame }) => {
 
   const { currentLevel, uniqueLettersCoordinates, currentCheckList, setCurrentCheckList } = useGameBlockData();
 
+  const handleClick = (letter: string) => {
+    setUsersWord(usersWord.length < 5 ? usersWord + letter : '');
+    setTrigger(prev => !prev);
+  };
+
   const handleDown = (letter: string) => {
     setUsersWord(letter);
     setMoveTrigger(true);
   };
 
-  const handleLetterClick = (letter: string) => {
+  const handleMove = (letter: string, e: any) => {
     if (moveTrigger && usersWord[usersWord.length - 1] !== letter) setUsersWord(usersWord + letter);
   };
 
   const handleUp = (letter: string) => {
-    // if (moveTrigger) setUsersWord(usersWord + letter);
     setMoveTrigger(false);
     setTrigger(prev => !prev);
   };
@@ -71,12 +75,10 @@ export const GameBlock: FC<any> = ({ onWonGame }) => {
       <UniqueLetters
         uniqueLettersCoordinates={uniqueLettersCoordinates}
         usersWord={usersWord}
-        handleLetterClick={handleLetterClick}
+        handleMove={handleMove}
         handleDown={handleDown}
         handleUp={handleUp}
-        // onMouseUp={() => {
-        //   handleUp('');
-        // }}
+        handleClick={handleClick}
       />
     </GameBlockContainer>
   );

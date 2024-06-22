@@ -1,37 +1,35 @@
 import { LetterItem } from '../../core/LetterItem';
 import { Typography } from '../../core/Typography';
+import { getDeviceType } from '../../utils';
 
 import { LetterWrapper, StyledUniqueLetters, UniqueLettersCircle } from './UniqueLetters.style';
 
 export const UniqueLetters = ({
   uniqueLettersCoordinates,
   usersWord,
-  handleLetterClick,
+  handleMove,
   handleDown,
   handleUp,
+  handleClick,
 }: any = {}) => {
+  const isDesktop = getDeviceType() === 'Desktop';
+
   return (
     <StyledUniqueLetters>
       <UniqueLettersCircle />
       {uniqueLettersCoordinates.map((letterData: Record<string, any>) => (
         <LetterWrapper
           onMouseEnter={() => {
-            handleLetterClick(letterData.letter);
+            isDesktop && handleMove(letterData.letter);
           }}
           onMouseDown={() => {
-            handleDown(letterData.letter);
+            isDesktop && handleDown(letterData.letter);
           }}
           onMouseUp={() => {
-            handleUp(letterData.letter);
+            isDesktop && handleUp(letterData.letter);
           }}
-          onTouchStart={() => {
-            handleDown(letterData.letter);
-          }}
-          onTouchMove={() => {
-            handleLetterClick(letterData.letter);
-          }}
-          onTouchEnd={() => {
-            handleUp(letterData.letter);
+          onClick={() => {
+            !isDesktop && handleClick(letterData.letter);
           }}
           key={letterData.letter}
           top={letterData.y}
