@@ -12,12 +12,25 @@ import { useGameBlockData } from './hooks/useGameBlockData';
 
 export const GameBlock: FC<any> = ({ onWonGame }) => {
   const dispatch = useAppDispatch();
+  const [trigger, setTrigger] = useState(false);
+  const [moveTrigger, setMoveTrigger] = useState(false);
   const [usersWord, setUsersWord] = useState<string>('');
 
   const { currentLevel, uniqueLettersCoordinates, currentCheckList, setCurrentCheckList } = useGameBlockData();
 
+  const handleDown = (letter: string) => {
+    setUsersWord(letter);
+    setMoveTrigger(true);
+  };
+
   const handleLetterClick = (letter: string) => {
-    setUsersWord(usersWord.length < 5 ? usersWord + letter : '');
+    if (moveTrigger && usersWord[usersWord.length - 1] !== letter) setUsersWord(usersWord + letter);
+  };
+
+  const handleUp = (letter: string) => {
+    // if (moveTrigger) setUsersWord(usersWord + letter);
+    setMoveTrigger(false);
+    setTrigger(prev => !prev);
   };
 
   useEffect(() => {
@@ -42,7 +55,7 @@ export const GameBlock: FC<any> = ({ onWonGame }) => {
         localStorage.setItem('currentCheckList', JSON.stringify([]));
       }
     }
-  }, [usersWord]);
+  }, [trigger]);
 
   return (
     <GameBlockContainer>
@@ -59,6 +72,11 @@ export const GameBlock: FC<any> = ({ onWonGame }) => {
         uniqueLettersCoordinates={uniqueLettersCoordinates}
         usersWord={usersWord}
         handleLetterClick={handleLetterClick}
+        handleDown={handleDown}
+        handleUp={handleUp}
+        // onMouseUp={() => {
+        //   handleUp('');
+        // }}
       />
     </GameBlockContainer>
   );

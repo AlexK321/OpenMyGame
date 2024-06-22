@@ -39,6 +39,13 @@ export const TitleContainer = styled.div`
   gap: 16px;
   width: 60%%;
   padding: 16px;
-  background: #ec6b3a;
+  background-image: url(./popup_ribbon.svg);
   color: white;
+`;
+
+export const TitleBG = styled.image`
+  position: absolute;
+  top: -18px;
+  left: 10%;
+  width: 80%;
 `;

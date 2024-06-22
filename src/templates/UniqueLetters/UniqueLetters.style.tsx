@@ -25,4 +25,5 @@ export const LetterWrapper = styled.div<{ top: number; left: number }>`
   top: ${props => props.top}px;
   left: ${props => props.left}px;
   cursor: pointer;
+  user-select: none;
 `;
