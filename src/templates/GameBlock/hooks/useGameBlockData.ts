@@ -37,9 +37,14 @@ export const useGameBlockData = () => {
   useEffect(() => {
     if (localStorage.getItem('currentLevel')) {
       dispatch(setCurrentLevel({ level: Number(localStorage.getItem('currentLevel')) }));
+    } else {
+      localStorage.setItem('currentLevel', currentLevel);
     }
+
     if (JSON.parse(localStorage.getItem('currentCheckList') || '[]').length) {
       setCurrentCheckList(JSON.parse(localStorage.getItem('currentCheckList') || '[]'));
+    } else {
+      localStorage.setItem('currentCheckList', JSON.stringify(currentCheckList));
     }
   }, []);
 
@@ -49,12 +54,6 @@ export const useGameBlockData = () => {
       localStorage.setItem('needUpdate', 'false');
     }
   }, [currentCheckList.length, currentLevel, currentList]);
-
-  useEffect(() => {
-    localStorage.setItem('currentCheckList', JSON.stringify(currentCheckList));
-  }, [currentCheckList]);
-
-  console.log('currentLevel', currentLevel, 'currentList', currentList, 'currentCheckList', currentCheckList);
 
   window.addEventListener('storage', () => {
     setIsStorageChanged(true);

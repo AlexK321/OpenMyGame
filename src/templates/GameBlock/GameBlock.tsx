@@ -3,6 +3,7 @@ import { FC, useEffect, useState } from 'react';
 import { Typography } from '../../core/Typography';
 import { setCurrentLevel } from '../../store/reducers/root-reducer';
 import { useAppDispatch } from '../../store/store';
+import { useDebounce } from '../../utils/useDebounce';
 import { UniqueLetters } from '../UniqueLetters';
 import { WordsList } from '../WordsList';
 
@@ -16,6 +17,12 @@ export const GameBlock: FC<any> = ({ onWonGame }) => {
 
   const { currentLevel, uniqueLettersCoordinates, currentCheckList, setCurrentCheckList } = useGameBlockData();
 
+  const debounce = useDebounce(usersWord, 1200);
+
+  useEffect(() => {
+    setUsersWord('');
+  }, [debounce]);
+
   useEffect(() => {
     if (currentCheckList.find((item: Record<string, any>) => item.word === usersWord)?.isFound === false) {
       setUsersWord('');
@@ -28,6 +35,7 @@ export const GameBlock: FC<any> = ({ onWonGame }) => {
       });
 
       setCurrentCheckList(updatedCurrentCheckList);
+      localStorage.setItem('currentCheckList', JSON.stringify(updatedCurrentCheckList));
 
       if (!updatedCurrentCheckList.find((item: Record<string, any>) => item.isFound === false)) {
         dispatch(setCurrentLevel({ level: currentLevel + 1 }));
