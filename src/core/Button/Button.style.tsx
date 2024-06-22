@@ -3,12 +3,12 @@ import styled from 'styled-components';
 export const StyledButton = styled.button`
   color: white;
   background: #65bd65;
-  border-radius: 22px;
-  padding: 12px 16px;
+  border-radius: 30px;
+  padding: 12px 30px;
   cursor: pointer;
   border: 2px solid #65bd65;
 
-  & h3 {
+  & h2 {
     margin: 0;
   }
 `;

@@ -29,8 +29,8 @@ export const useGameBlockData = () => {
 
     return {
       letter: item,
-      x: Math.cos((angle * Math.PI) / 180) * UNIQUE_LETTERS_RADIUS + 0.87 * UNIQUE_LETTERS_RADIUS,
-      y: Math.sin((angle * Math.PI) / 180) * UNIQUE_LETTERS_RADIUS + 0.87 * UNIQUE_LETTERS_RADIUS,
+      x: Math.cos((angle * Math.PI) / 180) * UNIQUE_LETTERS_RADIUS + 0.75 * UNIQUE_LETTERS_RADIUS,
+      y: Math.sin((angle * Math.PI) / 180) * UNIQUE_LETTERS_RADIUS + 0.75 * UNIQUE_LETTERS_RADIUS,
     };
   });
 

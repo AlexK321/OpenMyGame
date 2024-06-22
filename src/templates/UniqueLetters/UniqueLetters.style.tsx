@@ -10,6 +10,7 @@ export const StyledUniqueLetters = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  margin-bottom: 30px;
 `;
 
 export const UniqueLettersCircle = styled.div`

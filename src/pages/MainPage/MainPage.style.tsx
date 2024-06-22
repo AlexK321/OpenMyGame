@@ -8,9 +8,8 @@ export const MainWrapper = styled.div`
 `;
 
 export const MainContent = styled.div`
-  margin: auto;
-  min-height: calc(100vh - 90px);
-  padding: 32px;
+  margin: 10px auto;
+  padding: 16px 32px;
   width: 630px;
   display: flex;
   flex-direction: column;
@@ -18,4 +17,11 @@ export const MainContent = styled.div`
   border: 2px solid ${props => props.theme.colors.lightFont};
   border-radius: 8px;
   color: ${props => props.theme.colors.lightFont};
+
+  @media (max-width: 630px) {
+    width: 100%;
+    padding: 0 16px 16px;
+    border: 0 solid white;
+    margin: 0 auto;
+  }
 `;

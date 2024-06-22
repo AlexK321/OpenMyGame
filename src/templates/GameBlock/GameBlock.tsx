@@ -63,8 +63,8 @@ export const GameBlock: FC<any> = ({ onWonGame }) => {
       <WordsList currentCheckList={currentCheckList}></WordsList>
       <UsersWordContainer>
         {usersWord.split('').map(letter => (
-          <LetterItem key={letter}>
-            <Typography variant="h1">{letter}</Typography>
+          <LetterItem key={letter} size={32}>
+            <Typography variant="h2">{letter.toUpperCase()}</Typography>
           </LetterItem>
         ))}
       </UsersWordContainer>

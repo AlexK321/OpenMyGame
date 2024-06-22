@@ -30,22 +30,23 @@ export const StyledModalContainer = styled.div`
 `;
 
 export const TitleContainer = styled.div`
-  position: absolute;
-  top: -32px;
-  left: 19%;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  width: 60%%;
-  padding: 16px;
-  background-image: url(./popup_ribbon.svg);
+  width: 60%;
   color: white;
+  margin: -80px auto 0;
+
+  & h2 {
+    text-align: center;
+    margin: 0 auto;
 `;
 
 export const TitleBG = styled.image`
   position: absolute;
-  top: -18px;
+  top: -16px;
   left: 10%;
   width: 80%;
 `;

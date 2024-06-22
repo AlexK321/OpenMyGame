@@ -11,7 +11,9 @@ export const GameBlockContainer = styled.div`
 export const UsersWordContainer = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 8px;
   margin-bottom: 8px;
-  min-height: 60px;
+  min-height: 64px;
 `;

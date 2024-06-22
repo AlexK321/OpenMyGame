@@ -37,7 +37,7 @@ export const UniqueLetters = ({
           top={letterData.y}
           left={letterData.x}
         >
-          <LetterItem color={usersWord.split('').includes(letterData.letter) ? '#E96FA4' : 'white'}>
+          <LetterItem color={usersWord.split('').includes(letterData.letter) ? '#E96FA4' : 'white'} size={50} isCircle>
             <Typography variant="h1">{letterData.letter.toUpperCase()}</Typography>
           </LetterItem>
         </LetterWrapper>
