@@ -7,7 +7,7 @@ export const WordsList = ({ currentCheckList }: any = {}) => {
   return (
     <StyledWordList>
       {currentCheckList
-        .sort((a: Record<string, any>, b: Record<string, any>) => b.word.length - a.word.length)
+        .sort((a: Record<string, any>, b: Record<string, any>) => a.word.length - b.word.length)
         .map((item: Record<string, any>) => {
           const isFound = item.isFound;
           return (

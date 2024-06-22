@@ -1,41 +1,20 @@
 import { FC, useEffect, useState } from 'react';
 
-import { LetterItem } from '../../core/LetterItem';
 import { Typography } from '../../core/Typography';
 import { setCurrentLevel } from '../../store/reducers/root-reducer';
 import { useAppDispatch } from '../../store/store';
 import { UniqueLetters } from '../UniqueLetters';
 import { WordsList } from '../WordsList';
 
-import { GameBlockContainer, UsersWordContainer } from './GameBlock.style';
+import { GameBlockContainer } from './GameBlock.style';
 import { useGameBlockData } from './hooks/useGameBlockData';
 
 export const GameBlock: FC<any> = ({ onWonGame }) => {
   const dispatch = useAppDispatch();
   const [trigger, setTrigger] = useState(false);
-  const [moveTrigger, setMoveTrigger] = useState(false);
   const [usersWord, setUsersWord] = useState<string>('');
 
   const { currentLevel, uniqueLettersCoordinates, currentCheckList, setCurrentCheckList } = useGameBlockData();
-
-  const handleClick = (letter: string) => {
-    setUsersWord(usersWord.length < 5 ? usersWord + letter : '');
-    setTrigger(prev => !prev);
-  };
-
-  const handleDown = (letter: string) => {
-    setUsersWord(letter);
-    setMoveTrigger(true);
-  };
-
-  const handleMove = (letter: string, e: any) => {
-    if (moveTrigger && usersWord[usersWord.length - 1] !== letter) setUsersWord(usersWord + letter);
-  };
-
-  const handleUp = (letter: string) => {
-    setMoveTrigger(false);
-    setTrigger(prev => !prev);
-  };
 
   useEffect(() => {
     if (currentCheckList.find((item: Record<string, any>) => item.word === usersWord)?.isFound === false) {
@@ -65,20 +44,11 @@ export const GameBlock: FC<any> = ({ onWonGame }) => {
     <GameBlockContainer>
       <Typography variant="h2">Уровень {currentLevel} </Typography>
       <WordsList currentCheckList={currentCheckList}></WordsList>
-      <UsersWordContainer>
-        {usersWord.split('').map(letter => (
-          <LetterItem key={letter} size={32}>
-            <Typography variant="h2">{letter.toUpperCase()}</Typography>
-          </LetterItem>
-        ))}
-      </UsersWordContainer>
       <UniqueLetters
         uniqueLettersCoordinates={uniqueLettersCoordinates}
         usersWord={usersWord}
-        handleMove={handleMove}
-        handleDown={handleDown}
-        handleUp={handleUp}
-        handleClick={handleClick}
+        setTrigger={setTrigger}
+        setUsersWord={setUsersWord}
       />
     </GameBlockContainer>
   );
