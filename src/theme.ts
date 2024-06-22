@@ -6,15 +6,19 @@ export interface ITheme {
     bg2: string;
     darkFont: string;
     lightFont: string;
+    btn: string;
+    pink: string;
   };
 }
 
-const darkTheme: ITheme = {
+export const darkTheme: ITheme = {
   colors: {
     bg: '#2B344B',
     bg2: '#001529',
     darkFont: '#58595B',
     lightFont: 'white',
+    btn: '#65bd65',
+    pink: '#E96FA4',
   },
 };
 
@@ -24,6 +28,8 @@ const lightTheme: ITheme = {
     bg2: '#001529',
     darkFont: '#58595B',
     lightFont: 'white',
+    btn: '#65bd65',
+    pink: '#E96FA4',
   },
 };
 

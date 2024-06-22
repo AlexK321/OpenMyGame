@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledLetterItem = styled.div<{ isEmpty: boolean; color: string; size: number; isCircle: boolean }>`
+export const StyledLetterItem = styled.div<{ color: string; size: number; isCircle: boolean }>`
   width: ${props => props.size}px;
   height: ${props => props.size}px;
   display: flex;

@@ -14,10 +14,11 @@ export const GameBlock: FC<any> = ({ onWonGame }) => {
   const dispatch = useAppDispatch();
   const [trigger, setTrigger] = useState(false);
   const [usersWord, setUsersWord] = useState<string>('');
+  const USER_LETTER_DELAY = 1200;
 
   const { currentLevel, uniqueLettersCoordinates, currentCheckList, setCurrentCheckList } = useGameBlockData();
 
-  const debounce = useDebounce(usersWord, 1200);
+  const debounce = useDebounce(usersWord, USER_LETTER_DELAY);
 
   useEffect(() => {
     setUsersWord('');

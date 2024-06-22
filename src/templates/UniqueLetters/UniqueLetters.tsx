@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { LetterItem } from '../../core/LetterItem';
 import { Typography } from '../../core/Typography';
+import { darkTheme } from '../../theme';
 import { getDeviceType } from '../../utils';
 import { UsersWordContainer } from '../GameBlock/GameBlock.style';
 
@@ -12,7 +13,7 @@ export const UniqueLetters = ({ uniqueLettersCoordinates, usersWord, setTrigger,
   const [moveTrigger, setMoveTrigger] = useState(false);
 
   const handleClick = (letter: string) => {
-    setUsersWord(usersWord.length < 5 ? usersWord + letter : '');
+    setUsersWord(usersWord + letter);
     setTrigger((prev: boolean) => !prev);
   };
 
@@ -60,7 +61,7 @@ export const UniqueLetters = ({ uniqueLettersCoordinates, usersWord, setTrigger,
             left={letterData.x}
           >
             <LetterItem
-              color={usersWord.split('').includes(letterData.letter) ? '#E96FA4' : 'white'}
+              color={usersWord.split('').includes(letterData.letter) ? darkTheme.colors.pink : 'white'}
               size={50}
               isCircle
             >
