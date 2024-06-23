@@ -6,7 +6,11 @@ import { Typography } from '../../core/Typography/Typography';
 
 import { StyledModalContainer, TitleBG, TitleContainer, UpdatingModalWrapper } from './UpdatingModal.style';
 
-export const UpdatingModal: FC<any> = ({ onModalClick }) => {
+interface IUpdatingModal {
+  onModalClick: () => void;
+}
+
+export const UpdatingModal: FC<IUpdatingModal> = ({ onModalClick }) => {
   return (
     <UpdatingModalWrapper>
       <StyledModalContainer>

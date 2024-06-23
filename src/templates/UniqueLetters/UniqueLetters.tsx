@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FC, useState } from 'react';
 
 import { LetterItem } from '../../core/LetterItem';
 import { Typography } from '../../core/Typography';
@@ -8,7 +8,25 @@ import { UsersWordContainer } from '../GameBlock/GameBlock.style';
 
 import { LetterWrapper, StyledUniqueLetters, UniqueLettersCircle } from './UniqueLetters.style';
 
-export const UniqueLetters = ({ uniqueLettersCoordinates, usersWord, setTrigger, setUsersWord }: any = {}) => {
+interface ILetterData {
+  letter: string;
+  x: number;
+  y: number;
+}
+
+interface IUniqueLetters {
+  uniqueLettersCoordinates: ILetterData[];
+  usersWord: string;
+  setTrigger: React.Dispatch<React.SetStateAction<boolean>>;
+  setUsersWord: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const UniqueLetters: FC<IUniqueLetters> = ({
+  uniqueLettersCoordinates,
+  usersWord,
+  setTrigger,
+  setUsersWord,
+}) => {
   const isDesktop = getDeviceType() === 'Desktop';
   const [moveTrigger, setMoveTrigger] = useState(false);
 
@@ -42,7 +60,7 @@ export const UniqueLetters = ({ uniqueLettersCoordinates, usersWord, setTrigger,
       </UsersWordContainer>
       <StyledUniqueLetters>
         <UniqueLettersCircle />
-        {uniqueLettersCoordinates.map((letterData: Record<string, any>) => (
+        {uniqueLettersCoordinates.map((letterData: ILetterData) => (
           <LetterWrapper
             onMouseEnter={() => {
               isDesktop && handleMove(letterData.letter);

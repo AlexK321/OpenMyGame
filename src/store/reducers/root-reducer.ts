@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState: any = {
+interface IInitialState {
+  wordsMap: string[][];
+  currentLevel: number;
+}
+
+const initialState: IInitialState = {
   wordsMap: [
     ['брат', 'араб', 'тара', 'бар', 'раб', 'бра'],
     ['минор', 'корм', 'кино', 'мир', 'ком', 'ион', 'ром', 'мор', 'рок', 'инок'],

@@ -6,8 +6,12 @@ import { useAppSelector } from '../../store/store';
 
 import { GameBlockContainer, TitleContainer } from './InformationBlock.style';
 
-export const InformationBlock: FC<any> = ({ onWonGame }) => {
-  const currentLevel = useAppSelector<any>(state => state.rootReducer.currentLevel);
+interface IInformationBlock {
+  onWonGame: () => void;
+}
+
+export const InformationBlock: FC<IInformationBlock> = ({ onWonGame }) => {
+  const currentLevel = useAppSelector(state => state.rootReducer.currentLevel);
 
   return (
     <GameBlockContainer>

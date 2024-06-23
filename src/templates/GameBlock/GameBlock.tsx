@@ -8,9 +8,13 @@ import { UniqueLetters } from '../UniqueLetters';
 import { WordsList } from '../WordsList';
 
 import { GameBlockContainer } from './GameBlock.style';
-import { useGameBlockData } from './hooks/useGameBlockData';
+import { ICurrentCheckList, useGameBlockData } from './hooks/useGameBlockData';
 
-export const GameBlock: FC<any> = ({ onWonGame }) => {
+interface IGameBlock {
+  onWonGame: () => void;
+}
+
+export const GameBlock: FC<IGameBlock> = ({ onWonGame }) => {
   const dispatch = useAppDispatch();
   const [trigger, setTrigger] = useState(false);
   const [usersWord, setUsersWord] = useState<string>('');
@@ -25,9 +29,9 @@ export const GameBlock: FC<any> = ({ onWonGame }) => {
   }, [debounce]);
 
   useEffect(() => {
-    if (currentCheckList.find((item: Record<string, any>) => item.word === usersWord)?.isFound === false) {
+    if (currentCheckList.find((item: ICurrentCheckList) => item.word === usersWord)?.isFound === false) {
       setUsersWord('');
-      const updatedCurrentCheckList: Record<string, any>[] = currentCheckList.map((item: Record<string, any>) => {
+      const updatedCurrentCheckList: ICurrentCheckList[] = currentCheckList.map((item: ICurrentCheckList) => {
         if (item.word === usersWord) {
           item.isFound = true;
         }
@@ -38,7 +42,7 @@ export const GameBlock: FC<any> = ({ onWonGame }) => {
       setCurrentCheckList(updatedCurrentCheckList);
       localStorage.setItem('currentCheckList', JSON.stringify(updatedCurrentCheckList));
 
-      if (!updatedCurrentCheckList.find((item: Record<string, any>) => item.isFound === false)) {
+      if (!updatedCurrentCheckList.find((item: ICurrentCheckList) => item.isFound === false)) {
         dispatch(setCurrentLevel({ level: currentLevel + 1 }));
         localStorage.setItem('currentLevel', String(currentLevel + 1));
         onWonGame();
